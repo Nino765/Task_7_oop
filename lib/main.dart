@@ -5,7 +5,11 @@ import 'screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseService().initDb();
+  try {
+    await DatabaseService().initDb();
+  } catch (e) {
+    print('Database init error: $e');
+  }
   runApp(const ProviderScope(child: MyApp()));
 }
 
